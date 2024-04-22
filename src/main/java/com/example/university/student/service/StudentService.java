@@ -2,10 +2,12 @@ package com.example.university.student.service;
 
 import com.example.university.mapper.StudentMapper;
 import com.example.university.student.dto.StudentDto;
+import com.example.university.student.entity.Student;
 import com.example.university.student.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import javax.management.openmbean.InvalidKeyException;
+import java.util.UUID;
 
 @Service
 public class StudentService {
@@ -18,16 +20,20 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
-    public StudentDto getById(Long id) {
+    public StudentDto getById(UUID id) {
         var student = studentRepository.findById(id);
         if (student.isPresent()) {
-            return studentMapper.studentToStudentDTO(student.get());
+            return studentMapper.toDto(student.get());
         } else throw new InvalidKeyException();
     }
 
-//    public StudentDto createStudent(StudentDto studentDto) {
-//        Student student = studentMapper.studentDTOToStudent(studentDto);
-//        Student savedStudent = studentRepository.save(student);
-//        return studentMapper.studentToStudentDTO(savedStudent);
-//    }
+    public void createStudent(Student student) {
+        studentRepository.save(student);
+    }
+
+    public void deleteStudent(UUID id) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        studentRepository.delete(student);
+    }
 }

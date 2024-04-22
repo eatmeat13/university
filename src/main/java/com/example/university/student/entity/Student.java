@@ -4,17 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 public class Student {
     @Id
-    private Long id;
+    private UUID id;
     private String firstName;
     private String lastName;
     private int age;
     private double avgMark;
 
-    public Student(Long id, String firstName, String lastName, int age, double avgMark) {
+    public Student(UUID id, String firstName, String lastName, int age, double avgMark) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,7 +50,7 @@ public class Student {
         this.avgMark = avgMark;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -61,7 +62,7 @@ public class Student {
         this.firstName = firstName;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 

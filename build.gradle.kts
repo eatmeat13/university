@@ -22,6 +22,14 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    implementation("org.postgresql:postgresql:42.7.3")
+    implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+
+    implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.21")
+
 }
 
 tasks.withType<Test> {
